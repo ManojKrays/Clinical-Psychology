@@ -96,7 +96,7 @@ const TherapistDirectory = () => {
                 </div>
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Specialties</SelectItem>
+                <SelectItem value="all-specialties">All Specialties</SelectItem>
                 {specialties.map((specialty) => (
                   <SelectItem key={specialty} value={specialty}>
                     {specialty}
@@ -114,7 +114,7 @@ const TherapistDirectory = () => {
                 </div>
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Locations</SelectItem>
+                <SelectItem value="all-locations">All Locations</SelectItem>
                 {locations.map((location) => (
                   <SelectItem key={location} value={location}>
                     {location}
@@ -132,7 +132,7 @@ const TherapistDirectory = () => {
                 </div>
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">Any Price</SelectItem>
+                <SelectItem value="any-price">Any Price</SelectItem>
                 <SelectItem value="0-100">$0 - $100</SelectItem>
                 <SelectItem value="100-150">$100 - $150</SelectItem>
                 <SelectItem value="150-200">$150 - $200</SelectItem>
@@ -152,9 +152,9 @@ const TherapistDirectory = () => {
             
             <Button variant="ghost" size="sm" onClick={() => {
               setSearchTerm("");
-              setSelectedSpecialty("");
-              setSelectedLocation("");
-              setPriceRange("");
+              setSelectedSpecialty("all-specialties");
+              setSelectedLocation("all-locations");
+              setPriceRange("any-price");
             }}>
               Clear Filters
             </Button>
