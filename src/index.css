@@ -6,6 +6,10 @@
 All colors MUST be HSL for consistency and theming.
 */
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 @layer base {
   :root {
     /* Core Background & Text */
@@ -42,10 +46,10 @@ All colors MUST be HSL for consistency and theming.
     /* Status Colors */
     --success: 140 50% 50%;
     --success-foreground: 0 0% 100%;
-    
+
     --warning: 35 80% 60%;
     --warning-foreground: 0 0% 100%;
-    
+
     --destructive: 0 70% 55%;
     --destructive-foreground: 0 0% 100%;
 
@@ -58,10 +62,23 @@ All colors MUST be HSL for consistency and theming.
     --radius: 0.75rem;
 
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(210 60% 55%), hsl(165 45% 65%));
-    --gradient-secondary: linear-gradient(135deg, hsl(165 45% 65%), hsl(260 35% 75%));
-    --gradient-hero: linear-gradient(135deg, hsl(210 60% 55%) 0%, hsl(165 45% 65%) 50%, hsl(260 35% 75%) 100%);
-    
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(210 60% 55%),
+      hsl(165 45% 65%)
+    );
+    --gradient-secondary: linear-gradient(
+      135deg,
+      hsl(165 45% 65%),
+      hsl(260 35% 75%)
+    );
+    --gradient-hero: linear-gradient(
+      135deg,
+      hsl(210 60% 55%) 0%,
+      hsl(165 45% 65%) 50%,
+      hsl(260 35% 75%) 100%
+    );
+
     /* Shadows */
     --shadow-soft: 0 4px 20px hsl(210 60% 55% / 0.1);
     --shadow-medium: 0 8px 30px hsl(210 60% 55% / 0.15);
