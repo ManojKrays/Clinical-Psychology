@@ -1,35 +1,4 @@
-import { Calendar, MessageCircle, Heart, UserCheck } from "lucide-react";
-
-const steps = [
-  {
-    icon: UserCheck,
-    title: "Browse & Choose",
-    description:
-      "Explore our network of licensed therapists and find one that matches your needs and preferences.",
-    color: "text-primary",
-  },
-  {
-    icon: Calendar,
-    title: "Book Your Session",
-    description:
-      "Schedule your appointment at a time that works for you. Online or in-person options available.",
-    color: "text-secondary",
-  },
-  {
-    icon: MessageCircle,
-    title: "Start Your Journey",
-    description:
-      "Connect with your therapist in a secure, confidential environment designed for your comfort.",
-    color: "text-accent",
-  },
-  {
-    icon: Heart,
-    title: "Ongoing Support",
-    description:
-      "Continue your mental health journey with regular sessions and personalized care plans.",
-    color: "text-success",
-  },
-];
+import { steps } from "@/utils/data";
 
 const HowItWorks = () => {
   return (
