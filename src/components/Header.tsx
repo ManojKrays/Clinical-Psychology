@@ -10,12 +10,12 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border shadow-soft">
       <div className="container mx-auto px-4 py-4">
-        <div
-          className="flex items-center justify-between cursor-pointer"
-          onClick={() => navigate("/")}
-        >
+        <div className="flex items-center justify-between cursor-pointer">
           {/* Logo */}
-          <div className="flex items-center gap-2">
+          <div
+            className="flex items-center gap-2"
+            onClick={() => navigate("/")}
+          >
             <div className="w-10 h-10 rounded-lg bg-gradient-primary flex items-center justify-center">
               <Brain className="w-6 h-6 text-primary-foreground" />
             </div>
@@ -54,11 +54,23 @@ const Header = () => {
 
           {/* Desktop CTA Buttons */}
           <div className="hidden md:flex items-center gap-3">
-            <Button variant="ghost" size="sm">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => {
+                navigate("/login");
+              }}
+            >
               Sign In
             </Button>
-            <Button variant="cta" size="sm">
-              Get Started
+            <Button
+              variant="cta"
+              size="sm"
+              onClick={() => {
+                navigate("/signup");
+              }}
+            >
+              Signup
             </Button>
           </div>
 
@@ -107,11 +119,25 @@ const Header = () => {
               </a>
             </nav>
             <div className="flex flex-col gap-3">
-              <Button variant="ghost" size="sm">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => {
+                  setMenuOpen(false);
+                  navigate("/login");
+                }}
+              >
                 Sign In
               </Button>
-              <Button variant="cta" size="sm">
-                Get Started
+              <Button
+                variant="cta"
+                size="sm"
+                onClick={() => {
+                  setMenuOpen(false);
+                  navigate("/signup");
+                }}
+              >
+                Signup
               </Button>
             </div>
           </div>

@@ -39,7 +39,7 @@ export const get = (url, config = {}) => {
   return instance.get(url, config);
 };
 
-export const post = (url, data, config = {}) => {
+export const post = (url, data = {}, config = {}) => {
   return instance.post(url, data, config);
 };
 
