@@ -7,29 +7,29 @@ import useIsScreenWidth from "@/hooks/useIsScreenWidth";
 interface TherapistCardProps {
   id: string;
   name: string;
-  image: string;
-  specialties: string[];
-  experience: number;
+  profileUrl: string;
+  categories: string[];
+  yearsOfExperience: number;
   rating: number;
   reviews: number;
-  price: number;
+  amount: number;
   location: string;
   isOnline: boolean;
-  bio: string;
+  description: string;
 }
 
 const TherapistCard = ({
   id,
   name,
-  image,
-  specialties,
-  experience,
+  profileUrl,
+  categories,
+  yearsOfExperience,
   rating,
   reviews,
-  price,
+  amount,
   location,
   isOnline,
-  bio,
+  description,
 }: TherapistCardProps) => {
   const isExact320 = useIsScreenWidth(320);
 
@@ -40,7 +40,7 @@ const TherapistCard = ({
         <div className="flex items-center gap-4 ">
           <div className="relative">
             <img
-              src={image}
+              src={profileUrl}
               alt={`Dr. ${name}`}
               className="w-20 h-20 rounded-full object-cover border-2 border-primary-light"
             />
@@ -75,7 +75,7 @@ const TherapistCard = ({
               </div>
               <div className="flex items-center gap-2 justify-start">
                 <Clock className="w-4 h-4" />
-                <span>{experience} years exp.</span>
+                <span>{yearsOfExperience} years exp.</span>
               </div>
             </div>
           </div>
@@ -86,21 +86,22 @@ const TherapistCard = ({
       <div className="px-6 pb-4">
         {/* Specialties */}
         <div className="flex flex-wrap gap-2 mb-4">
-          {specialties.slice(0, 3).map((specialty, index) => (
-            <Badge key={index} variant="secondary" className="text-xs">
-              {specialty}
-            </Badge>
-          ))}
-          {specialties.length > 3 && (
+          {categories &&
+            categories.slice(0, 3).map((specialty, index) => (
+              <Badge key={index} variant="secondary" className="text-xs">
+                {specialty}
+              </Badge>
+            ))}
+          {categories && categories.length > 3 && (
             <Badge variant="outline" className="text-xs">
-              +{specialties.length - 3} more
+              +{categories && categories.length - 3} more
             </Badge>
           )}
         </div>
 
         {/* Bio */}
         <p className="text-sm text-muted-foreground line-clamp-3 mb-4 text-justify">
-          {bio}
+          {description}
         </p>
 
         {/* Session Types */}
@@ -122,7 +123,9 @@ const TherapistCard = ({
           }`}
         >
           <div>
-            <span className="text-2xl font-bold text-foreground">${price}</span>
+            <span className="text-2xl font-bold text-foreground">
+              ${amount}
+            </span>
             <span className="text-sm text-muted-foreground">/session</span>
           </div>
 
@@ -132,9 +135,11 @@ const TherapistCard = ({
                 View Profile
               </Button>
             </Link>
-            <Button variant="cta" size="sm" className="w-full">
-              Book Now
-            </Button>
+            <Link to={`/doctor/${id}`}>
+              <Button variant="cta" size="sm" className="w-full">
+                Book Now
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
