@@ -11,12 +11,54 @@ import {
 import TherapistCard from "../../components/TherapistCard";
 import { Search, Filter, MapPin, DollarSign, Star } from "lucide-react";
 import { locations, specialties, therapists } from "@/utils/data";
+import { useQuery } from "@tanstack/react-query";
+import { errorNotify } from "@/utils/MessageBar";
+import { get } from "@/config/network";
+import apiDetails from "@/config/apiDetails";
 
 const TherapistDirectory = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedSpecialty, setSelectedSpecialty] = useState("");
-  const [selectedLocation, setSelectedLocation] = useState("");
-  const [priceRange, setPriceRange] = useState("");
+  // const [searchTerm, setSearchTerm] = useState("");
+  // const [selectedSpecialty, setSelectedSpecialty] = useState("");
+  // const [selectedLocation, setSelectedLocation] = useState("");
+  // const [priceRange, setPriceRange] = useState("");
+
+  type FilterType = {
+    name: string;
+    category: string;
+    location: string;
+    price: string;
+  };
+
+  const [filter, setFilter] = useState<FilterType>({
+    name: "",
+    category: "",
+    location: "",
+    price: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFilter((pre) => ({ ...pre, [name]: value }));
+  };
+
+  const filterTherapist = async ({ queryKey }) => {
+    try {
+      const [_key, filter] = queryKey;
+      const params = new URLSearchParams(filter).toString();
+      const res = await get(`${apiDetails.endPoint.filter}?${params}`);
+      return res?.data?.data || [];
+    } catch (err) {
+      errorNotify(err.message || "something went wrong..!");
+      return [];
+    }
+  };
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["filter", filter],
+    queryFn: filterTherapist,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+  });
 
   return (
     <section id="therapists" className="py-20 bg-background">
@@ -40,16 +82,18 @@ const TherapistDirectory = () => {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
               <Input
                 placeholder="Search by name or specialty"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                name="name"
+                value={filter?.name}
+                onChange={(e) => handleChange(e)}
                 className="pl-10"
               />
             </div>
 
             {/* Specialty Filter */}
             <Select
-              value={selectedSpecialty}
-              onValueChange={setSelectedSpecialty}
+              value={filter?.category}
+              onValueChange={handleChange}
+              name="category"
             >
               <SelectTrigger>
                 <div className="flex items-center gap-2">
@@ -69,8 +113,9 @@ const TherapistDirectory = () => {
 
             {/* Location Filter */}
             <Select
-              value={selectedLocation}
-              onValueChange={setSelectedLocation}
+              value={filter?.location}
+              onValueChange={(e) => handleChange(e)}
+              name="location"
             >
               <SelectTrigger>
                 <div className="flex items-center gap-2">
@@ -89,7 +134,11 @@ const TherapistDirectory = () => {
             </Select>
 
             {/* Price Range */}
-            <Select value={priceRange} onValueChange={setPriceRange}>
+            <Select
+              value={filter?.price}
+              onValueChange={(e) => handleChange(e)}
+              name="price"
+            >
               <SelectTrigger>
                 <div className="flex items-center gap-2">
                   <DollarSign className="w-4 h-4 text-muted-foreground" />
@@ -119,10 +168,12 @@ const TherapistDirectory = () => {
               variant="ghost"
               size="sm"
               onClick={() => {
-                setSearchTerm("");
-                setSelectedSpecialty("all-specialties");
-                setSelectedLocation("all-locations");
-                setPriceRange("any-price");
+                setFilter({
+                  name: "",
+                  speciality: "",
+                  location: "",
+                  price: "",
+                });
               }}
             >
               Clear Filters

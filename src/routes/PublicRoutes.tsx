@@ -1,6 +1,8 @@
 import DoctorDetails from "@/pages/DoctorDetails";
 import Index from "@/pages/Main/Index";
 import Layout from "@/pages/Layout";
+import PaymentSuccess from "@/pages/PaymentSuccess";
+import PaymentFailure from "@/pages/PaymentFailure";
 
 const PublicRoutes = [
   {
@@ -9,10 +11,18 @@ const PublicRoutes = [
     children: [
       { path: "/", element: <Index /> },
       {
-        path: "/doctor/:id",
+        path: "/doctor/:therapistId",
         element: <DoctorDetails />,
       },
     ],
+  },
+  {
+    path: "/payment-success/:sessionId",
+    element: <PaymentSuccess />,
+  },
+  {
+    path: "/payment-failure/:sessionId",
+    element: <PaymentFailure />,
   },
 ];
 

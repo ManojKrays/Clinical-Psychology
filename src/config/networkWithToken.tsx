@@ -8,11 +8,15 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   async (config) => {
-    const token = JSON.parse(localStorage.getItem("userDetails"));
-    const parsedToken = token?.state?.user?.token;
-    if (parsedToken) {
-      config.headers.Authorization = `Bearer ${parsedToken}`;
-    }
+    // const token = JSON.parse(localStorage.getItem("userDetails"));
+    const token =
+      "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYXJhaEBnbWFpbC5jb20iLCJyb2xlIjoiVEhFUkFQSVNUIiwiaWF0IjoxNzUzNDIxNzM5LCJleHAiOjE3NTM1MDgxMzl9.lR4Y64ZSxQLNeLT1qLI6cAr1Q-Zqd8A2Eg2ChHp5q-E";
+    // const parsedToken = token?.state?.user?.token;
+    // if (parsedToken) {
+    //   config.headers.Authorization = `Bearer ${parsedToken}`;
+    // }
+    config.headers.Authorization = `Bearer ${token}`;
+
     return config;
   },
   (err) => {
@@ -27,7 +31,7 @@ instance.interceptors.response.use(
   (error) => {
     try {
       if (error.response) {
-        console.log("Error", error.response);
+        // console.log("Error", error.response);
         const { data, status } = error.response;
 
         if (status === 401 && data?.error === "Token Expired") {
