@@ -5,6 +5,11 @@ const apiDetails = {
     checkout: "/checkout",
     therapist_profile: "/therapist/getProfileDetails",
     filter: "therapist/search",
+    login: "/auth/login",
+    signUp: "/client/register",
+    sendOtp: "/auth/sendOtp",
+    verifyOtp: "/auth/verifyOtp",
+    changePassword: "/auth/changePassword",
   },
 };
 
