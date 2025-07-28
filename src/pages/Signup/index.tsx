@@ -86,7 +86,7 @@ const Signup = () => {
 
   return (
     <div className="pt-24 pb-10  md:pt-30">
-      <div className="mx-auto md:w-[80%] w-[90%] rounded-lg bg-white p-10 shadow-lg">
+      <div className="mx-auto md:w-[80%] w-[90%]">
         <h2 className="mb-2 text-xl font-bold">Registration</h2>
         <h4 className="text-primary mb-6 text-base">Basic Information</h4>
 
@@ -108,53 +108,61 @@ const Signup = () => {
                     )}
                   </FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder="Enter your name" />
+                    <Input
+                      className="bg-white"
+                      {...field}
+                      placeholder="Enter your name"
+                    />
                   </FormControl>
                 </FormItem>
               )}
             />
-            <div className="relative">
-              <FormField
-                control={control}
-                name="email"
-                rules={{
-                  required: true,
-                  pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                }}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className={errors.email ? "text-red-600" : ""}>
-                      Email{" "}
-                      {isSubmitted && errors.email && (
-                        <span className="text-red-600">*</span>
-                      )}
-                    </FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        type="email"
-                        placeholder="Enter your Email"
-                      />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-              <EmailVerification
-                email={email}
-                purpose={"client-register"}
-                otpVerified={isEmailVerified}
-                setOtpVerifiedExternally={setIsEmailVerified}
-                otpValue={otpValue}
-                otpSent={otpSent}
-                sendingOtp={sendingOtp}
-                verifyingOtp={verifyingOtp}
-                setOtpSent={setOtpSent}
-                setOtpValue={setOtpValue}
-                setSendingOtp={setSendingOtp}
-                setVerifyingOtp={setVerifyingOtp}
-              />
+            <div className="flex flex-col md:flex-row gap-4 w-full">
+              <div className="w-full md:w-1/2">
+                <FormField
+                  control={control}
+                  name="email"
+                  rules={{
+                    required: true,
+                    pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                  }}
+                  render={({ field }) => (
+                    <FormItem className="w-full">
+                      <FormLabel className={errors.email ? "text-red-600" : ""}>
+                        Email{" "}
+                        {isSubmitted && errors.email && (
+                          <span className="text-red-600">*</span>
+                        )}
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          className="bg-white w-full"
+                          {...field}
+                          type="email"
+                          placeholder="Enter your Email"
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="w-full md:w-1/2 flex items-end">
+                <EmailVerification
+                  email={email}
+                  purpose={"client-register"}
+                  otpVerified={isEmailVerified}
+                  setOtpVerifiedExternally={setIsEmailVerified}
+                  otpValue={otpValue}
+                  otpSent={otpSent}
+                  sendingOtp={sendingOtp}
+                  verifyingOtp={verifyingOtp}
+                  setOtpSent={setOtpSent}
+                  setOtpValue={setOtpValue}
+                  setSendingOtp={setSendingOtp}
+                  setVerifyingOtp={setVerifyingOtp}
+                />
+              </div>
             </div>
-
             <FormField
               control={control}
               name="phone"
@@ -206,6 +214,7 @@ const Signup = () => {
                   <FormControl>
                     <div className="relative">
                       <Input
+                        className="bg-white"
                         {...field}
                         type={showPassword ? "text" : "password"}
                         placeholder="At least 8 characters"

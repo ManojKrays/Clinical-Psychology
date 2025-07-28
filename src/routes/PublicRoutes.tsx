@@ -6,6 +6,7 @@ import PaymentFailure from "@/pages/PaymentFailure";
 import Login from "@/pages/Login";
 import Signup from "@/pages/Signup";
 import ForgotPassword from "@/pages/ForgotPassword";
+import Chat from "@/pages/Chat";
 
 const PublicRoutes = [
   {
@@ -21,6 +22,10 @@ const PublicRoutes = [
         element: <DoctorDetails />,
       },
     ],
+  },
+  {
+    path: "/chat",
+    element: <Chat />,
   },
   {
     path: "/payment-success/:sessionId",

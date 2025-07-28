@@ -10,6 +10,7 @@ const apiDetails = {
     sendOtp: "/auth/sendOtp",
     verifyOtp: "/auth/verifyOtp",
     changePassword: "/auth/changePassword",
+    sseToken: "/ai-therapist/sse-token",
   },
 };
 

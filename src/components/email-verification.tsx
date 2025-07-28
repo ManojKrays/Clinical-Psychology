@@ -97,7 +97,7 @@ const EmailVerification = ({
       <button
         type="button"
         onClick={handleSendOtp}
-        className="rounded bg-blue-500 px-3 py-1 text-sm text-white hover:bg-blue-600"
+        className="rounded bg-blue-500 px-3 py-1 lg:text-[12px] md:text-[10px] text-sm text-white hover:bg-blue-600"
         disabled={sendingOtp || otpVerified}
       >
         {sendingOtp ? "Sending..." : otpVerified ? "Verified" : "Send OTP"}
@@ -107,7 +107,7 @@ const EmailVerification = ({
         <>
           <input
             type="text"
-            className="w-24 rounded border px-2 py-1 text-sm"
+            className="w-24 rounded border px-2 py-1 lg:text-[12px] md:text-[10px] text-sm"
             placeholder="Enter OTP"
             value={otpValue}
             onChange={(e) => setOtpValue(e.target.value)}
@@ -115,7 +115,7 @@ const EmailVerification = ({
           <button
             type="button"
             onClick={handleVerifyOtp}
-            className="rounded bg-green-500 px-3 py-1 text-sm text-white hover:bg-green-600"
+            className="rounded bg-green-500 px-3 py-1 lg:text-[12px] md:text-[10px] text-sm text-white hover:bg-green-600"
             disabled={verifyingOtp}
           >
             {verifyingOtp ? "Verifying..." : "Verify"}

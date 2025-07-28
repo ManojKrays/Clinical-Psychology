@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -10,18 +10,15 @@ import {
 } from "@/components/ui/select";
 import TherapistCard from "../../components/TherapistCard";
 import { Search, Filter, MapPin, DollarSign, Star } from "lucide-react";
-import { locations, specialties, therapists } from "@/utils/data";
+import { locations, specialties } from "@/utils/data";
 import { useQuery } from "@tanstack/react-query";
 import { errorNotify } from "@/utils/MessageBar";
 import { get } from "@/config/network";
 import apiDetails from "@/config/apiDetails";
+import Loader from "@/components/Loader";
+import useDebounce from "@/hooks/useDebounce";
 
 const TherapistDirectory = () => {
-  // const [searchTerm, setSearchTerm] = useState("");
-  // const [selectedSpecialty, setSelectedSpecialty] = useState("");
-  // const [selectedLocation, setSelectedLocation] = useState("");
-  // const [priceRange, setPriceRange] = useState("");
-
   type FilterType = {
     name: string;
     category: string;
@@ -36,9 +33,21 @@ const TherapistDirectory = () => {
     price: "",
   });
 
+  const [searchInput, setSearchInput] = useState("");
+  const debouncedSearch = useDebounce(searchInput, 500);
+
+  useEffect(() => {
+    setFilter((prev) => ({ ...prev, name: debouncedSearch }));
+  }, [debouncedSearch]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFilter((pre) => ({ ...pre, [name]: value }));
+
+    if (name === "name") {
+      setSearchInput(value);
+    } else {
+      setFilter((prev) => ({ ...prev, [name]: value }));
+    }
   };
 
   const filterTherapist = async ({ queryKey }) => {
@@ -46,6 +55,7 @@ const TherapistDirectory = () => {
       const [_key, filter] = queryKey;
       const params = new URLSearchParams(filter).toString();
       const res = await get(`${apiDetails.endPoint.filter}?${params}`);
+      console.log(res);
       return res?.data?.data || [];
     } catch (err) {
       errorNotify(err.message || "something went wrong..!");
@@ -53,7 +63,7 @@ const TherapistDirectory = () => {
     }
   };
 
-  const { data, isLoading } = useQuery({
+  const { data: therapists, isLoading } = useQuery({
     queryKey: ["filter", filter],
     queryFn: filterTherapist,
     refetchOnWindowFocus: false,
@@ -83,7 +93,7 @@ const TherapistDirectory = () => {
               <Input
                 placeholder="Search by name or specialty"
                 name="name"
-                value={filter?.name}
+                value={searchInput}
                 onChange={(e) => handleChange(e)}
                 className="pl-10"
               />
@@ -92,8 +102,9 @@ const TherapistDirectory = () => {
             {/* Specialty Filter */}
             <Select
               value={filter?.category}
-              onValueChange={handleChange}
-              name="category"
+              onValueChange={(value) =>
+                setFilter((prev) => ({ ...prev, category: value }))
+              }
             >
               <SelectTrigger>
                 <div className="flex items-center gap-2">
@@ -102,7 +113,7 @@ const TherapistDirectory = () => {
                 </div>
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all-specialties">All Specialties</SelectItem>
+                <SelectItem value="null">All Specialties</SelectItem>
                 {specialties.map((specialty) => (
                   <SelectItem key={specialty} value={specialty}>
                     {specialty}
@@ -114,8 +125,9 @@ const TherapistDirectory = () => {
             {/* Location Filter */}
             <Select
               value={filter?.location}
-              onValueChange={(e) => handleChange(e)}
-              name="location"
+              onValueChange={(value) =>
+                setFilter((prev) => ({ ...prev, location: value }))
+              }
             >
               <SelectTrigger>
                 <div className="flex items-center gap-2">
@@ -124,7 +136,7 @@ const TherapistDirectory = () => {
                 </div>
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all-locations">All Locations</SelectItem>
+                <SelectItem value="null">All Locations</SelectItem>
                 {locations.map((location) => (
                   <SelectItem key={location} value={location}>
                     {location}
@@ -136,8 +148,9 @@ const TherapistDirectory = () => {
             {/* Price Range */}
             <Select
               value={filter?.price}
-              onValueChange={(e) => handleChange(e)}
-              name="price"
+              onValueChange={(value) =>
+                setFilter((prev) => ({ ...prev, price: value }))
+              }
             >
               <SelectTrigger>
                 <div className="flex items-center gap-2">
@@ -146,7 +159,7 @@ const TherapistDirectory = () => {
                 </div>
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="any-price">Any Price</SelectItem>
+                <SelectItem value="null">Any Price</SelectItem>
                 <SelectItem value="0-100">$0 - $100</SelectItem>
                 <SelectItem value="100-150">$100 - $150</SelectItem>
                 <SelectItem value="150-200">$150 - $200</SelectItem>
@@ -160,7 +173,7 @@ const TherapistDirectory = () => {
             <div className="flex items-center gap-2">
               <Filter className="w-4 h-4 text-muted-foreground" />
               <span className="text-sm text-muted-foreground">
-                {therapists.length} therapists found
+                {therapists && therapists.length} therapists found
               </span>
             </div>
 
@@ -170,7 +183,7 @@ const TherapistDirectory = () => {
               onClick={() => {
                 setFilter({
                   name: "",
-                  speciality: "",
+                  category: "",
                   location: "",
                   price: "",
                 });
@@ -181,20 +194,25 @@ const TherapistDirectory = () => {
           </div>
         </div>
 
-        {/* Therapist Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8 lg:w-[85%] xl:w-full mx-auto">
-          {/* <div className="flex flex-wrap flex-row gap-8"> */}
-          {therapists.map((therapist) => (
-            <TherapistCard key={therapist.id} {...therapist} />
-          ))}
-        </div>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8 lg:w-[85%] xl:w-full mx-auto">
+              {therapists &&
+                therapists.map((therapist: any) => (
+                  <TherapistCard key={therapist?.id} {...therapist} />
+                ))}
+            </div>
 
-        {/* Load More */}
-        <div className="text-center mt-12">
-          <Button variant="soft" size="lg">
-            Load More Therapists
-          </Button>
-        </div>
+            {/* Load More */}
+            {/* <div className="text-center mt-12">
+              <Button variant="soft" size="lg">
+                Load More Therapists
+              </Button>
+            </div> */}
+          </>
+        )}
       </div>
     </section>
   );
