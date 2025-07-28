@@ -1,12 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Shield, Users, Clock } from "lucide-react";
 import heroImage from "@/assets/hero-therapy.jpg";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="relative min-h-[90vh] flex items-center bg-gradient-to-br from-background via-primary-light/10 to-secondary-light/10 overflow-hidden">
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9ImhzbCgyMTAgNjAlIDU1JSAvIDAuMDMpIiBmaWxsLXJ1bGU9Im5vbnplcm8iPjxjaXJjbGUgY3g9IjMwIiBjeT0iMzAiIHI9IjQiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-40 "></div>
 
       <div className="container mx-auto px-4 py-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -53,8 +55,15 @@ const Hero = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button variant="hero" size="xl" className="group">
-                Book Your First Session
+              <Button
+                variant="hero"
+                size="xl"
+                className="group"
+                onClick={() => {
+                  navigate("/chat");
+                }}
+              >
+                Chat With Our AI Mentor
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button variant="soft" size="xl">

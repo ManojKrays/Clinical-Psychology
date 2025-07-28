@@ -5,6 +5,7 @@ const apiDetails = {
     checkout: "/checkout",
     therapist_profile: "/therapist/getProfileDetails",
     filter: "therapist/search",
+    sseToken: "/ai-therapist/sse-token",
   },
 };
 

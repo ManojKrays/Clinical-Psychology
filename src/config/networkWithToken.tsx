@@ -10,7 +10,7 @@ instance.interceptors.request.use(
   async (config) => {
     // const token = JSON.parse(localStorage.getItem("userDetails"));
     const token =
-      "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYXJhaEBnbWFpbC5jb20iLCJyb2xlIjoiVEhFUkFQSVNUIiwiaWF0IjoxNzUzNDIxNzM5LCJleHAiOjE3NTM1MDgxMzl9.lR4Y64ZSxQLNeLT1qLI6cAr1Q-Zqd8A2Eg2ChHp5q-E";
+      "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NTM2ODAyMjYsImV4cCI6MTc1Mzc2NjYyNn0.FOqyRWlSiDv2t6yqBIX0afyB0RMZAWySedTCoLDeGYk";
     // const parsedToken = token?.state?.user?.token;
     // if (parsedToken) {
     //   config.headers.Authorization = `Bearer ${parsedToken}`;

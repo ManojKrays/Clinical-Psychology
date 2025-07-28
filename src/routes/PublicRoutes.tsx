@@ -3,6 +3,7 @@ import Index from "@/pages/Main/Index";
 import Layout from "@/pages/Layout";
 import PaymentSuccess from "@/pages/PaymentSuccess";
 import PaymentFailure from "@/pages/PaymentFailure";
+import Chat from "@/pages/Chat";
 
 const PublicRoutes = [
   {
@@ -15,6 +16,10 @@ const PublicRoutes = [
         element: <DoctorDetails />,
       },
     ],
+  },
+  {
+    path: "/chat",
+    element: <Chat />,
   },
   {
     path: "/payment-success/:sessionId",
