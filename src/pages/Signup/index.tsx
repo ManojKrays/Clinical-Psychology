@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
@@ -48,9 +48,13 @@ const Signup = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [isEmailVerified, setIsEmailVerified] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [timezone, setTimezone] = useState(null);
+  useEffect(() => {
+    const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    setTimezone(userTimeZone);
+  }, []);
 
   const onSubmit = async (data: FormData) => {
-    console.log("Form data:", data);
     if (!isEmailVerified) {
       errorNotify("Please verify your email before registering.");
       return;
@@ -66,6 +70,7 @@ const Signup = () => {
         address: data?.address,
         dob: data?.dob,
         gender: data?.gender,
+        timezone,
       });
       console.log("eer", response);
 

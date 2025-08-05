@@ -17,7 +17,7 @@ interface TherapistCardProps {
   amount: number;
   location: string;
   isOnline: boolean;
-  description: string;
+  summary: string;
 }
 
 const TherapistCard = ({
@@ -31,7 +31,7 @@ const TherapistCard = ({
   amount,
   location,
   isOnline,
-  description,
+  summary,
 }: TherapistCardProps) => {
   const isExact320 = useIsScreenWidth(320);
   const navigate = useNavigate();
@@ -124,7 +124,7 @@ const TherapistCard = ({
 
         {/* Bio */}
         <p className="text-sm text-muted-foreground line-clamp-3 mb-4 text-justify">
-          {description}
+          {summary}
         </p>
 
         {/* Session Types */}

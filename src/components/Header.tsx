@@ -17,6 +17,7 @@ const Header = () => {
     clearUser();
     localStorage.clear();
   };
+  const [showMenu, setShowMenu] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border shadow-soft">
@@ -123,15 +124,39 @@ const Header = () => {
                 >
                   Sign In
                 </Button>
-                <Button
-                  variant="cta"
-                  size="sm"
-                  onClick={() => {
-                    navigate("/signup");
-                  }}
-                >
-                  Signup
-                </Button>
+                <>
+                  <Button
+                    variant="cta"
+                    size="sm"
+                    onClick={() => {
+                      setShowMenu((prev) => !prev);
+                    }}
+                  >
+                    Signup
+                  </Button>
+                  {showMenu && (
+                    <div className="absolute top-10 right-5 z-50 w-32 rounded-md bg-white shadow-lg">
+                      <div
+                        className="cursor-pointer px-4 py-2 hover:bg-gray-100 text-sm"
+                        onClick={() => {
+                          navigate("/signup");
+                          setShowMenu(false);
+                        }}
+                      >
+                        Client
+                      </div>
+                      <div
+                        className="cursor-pointer px-4 py-2 hover:bg-gray-100 text-sm"
+                        onClick={() => {
+                          navigate("/therapist-register");
+                          setShowMenu(false);
+                        }}
+                      >
+                        Therapist
+                      </div>
+                    </div>
+                  )}
+                </>
               </div>
             )}
           </div>
@@ -241,16 +266,40 @@ const Header = () => {
                 >
                   Sign In
                 </Button>
-                <Button
-                  variant="cta"
-                  size="sm"
-                  onClick={() => {
-                    setMenuOpen(false);
-                    navigate("/signup");
-                  }}
-                >
-                  Signup
-                </Button>
+                <>
+                  {" "}
+                  <Button
+                    variant="cta"
+                    size="sm"
+                    onClick={() => {
+                      setShowMenu((prev) => !prev);
+                    }}
+                  >
+                    Signup
+                  </Button>
+                  {showMenu && (
+                    <div className="absolute right-3 z-50 w-[50%] rounded-md bg-white shadow-lg">
+                      <div
+                        className="cursor-pointer px-4 py-2 hover:bg-gray-100 text-sm"
+                        onClick={() => {
+                          navigate("/signup");
+                          setShowMenu(false);
+                        }}
+                      >
+                        Client
+                      </div>
+                      <div
+                        className="cursor-pointer px-4 py-2 hover:bg-gray-100 text-sm"
+                        onClick={() => {
+                          navigate("/therapist-register");
+                          setShowMenu(false);
+                        }}
+                      >
+                        Therapist
+                      </div>
+                    </div>
+                  )}
+                </>
               </div>
             )}
           </div>

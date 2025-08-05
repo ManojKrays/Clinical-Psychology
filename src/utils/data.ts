@@ -2,6 +2,7 @@ import therapist1 from "@/assets/therapist-1.jpg";
 import therapist2 from "@/assets/therapist-2.jpg";
 import therapist3 from "@/assets/therapist-3.jpg";
 import { Calendar, MessageCircle, Heart, UserCheck } from "lucide-react";
+import String from "./String";
 
 export const doctor = {
   id: "1",
@@ -96,6 +97,16 @@ export const specialties = [
   "Couples Therapy",
   "Family Therapy",
 ];
+export const specialtiesList = [
+  { label: "Anxiety", value: "Anxiety" },
+  { label: "Depression", value: "Depression" },
+  { label: "Trauma", value: "Trauma" },
+  { label: "PTSD", value: "PTSD" },
+  { label: "CBT", value: "CBT" },
+  { label: "EMDR", value: "EMDR" },
+  { label: "Couples Therapy", value: "Couples Therapy" },
+  { label: "Family Therapy", value: "Family Therapy" },
+];
 
 export const locations = [
   "New York, NY",
@@ -132,5 +143,81 @@ export const steps = [
     description:
       "Continue your mental health journey with regular sessions and personalized care plans.",
     color: "text-success",
+  },
+];
+export const timeslots = [
+  { label: "01:00", value: "01:00" },
+  { label: "02:00", value: "02:00" },
+  { label: "03:00", value: "03:00" },
+  { label: "04:00", value: "04:00" },
+  { label: "05:00", value: "05:00" },
+  { label: "06:00", value: "06:00" },
+  { label: "07:00", value: "07:00" },
+  { label: "08:00", value: "08:00" },
+  { label: "09:00", value: "09:00" },
+  { label: "10:00", value: "10:00" },
+  { label: "11:00", value: "11:00" },
+  { label: "12:00", value: "12:00" },
+  { label: "13:00", value: "13:00" },
+  { label: "14:00", value: "14:00" },
+  { label: "15:00", value: "15:00" },
+  { label: "16:00", value: "16:00" },
+  { label: "17:00", value: "17:00" },
+  { label: "18:00", value: "18:00" },
+  { label: "19:00", value: "19:00" },
+  { label: "20:00", value: "20:00" },
+  { label: "21:00", value: "21:00" },
+  { label: "22:00", value: "22:00" },
+  { label: "23:00", value: "23:00" },
+  { label: "24:00", value: "24:00" },
+];
+export const therapistTerms = [
+  {
+    title: String.terms.independentTherapistTitle,
+    body: [
+      String.terms.independentTherapistBody1,
+      String.terms.independentTherapistBody2,
+    ],
+  },
+  {
+    title: String.terms.profileConductTitle,
+    body: [String.terms.profileConductBody1, String.terms.profileConductBody2],
+  },
+  {
+    title: String.terms.licenseTitle,
+    body: [String.terms.licenseBody1, String.terms.licenseBody2],
+  },
+  {
+    title: String.terms.confidentialityTitle,
+    body: [
+      String.terms.confidentialityBody1,
+      String.terms.confidentialityBody2,
+    ],
+  },
+  {
+    title: String.terms.terminationTitle,
+    body: [String.terms.terminationBody1, String.terms.terminationBody2],
+  },
+];
+export const cardDetails = [
+  {
+    heading: "Expand Your Reach",
+    des: "Connect with individuals worldwide who are actively seeking professional mental health support.",
+  },
+  {
+    heading: "Build Your Professional Reputation",
+    des: "Enhance your credibility with client reviews, testimonials, and greater visibility on our platform.",
+  },
+  {
+    heading: "Earn While Making a Difference",
+    des: "Provide paid therapy sessions and grow your private practice or online presence.",
+  },
+  {
+    heading: "Make a Global Impact",
+    des: "Support mental well-being across diverse cultures and communities.",
+  },
+  {
+    heading: "Offer Free Intro Sessions",
+    des: "Optionally provide free first-time sessions for new clients or platform promotions.",
   },
 ];
