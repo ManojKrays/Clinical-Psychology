@@ -3,11 +3,11 @@ import useAuthStore from "@/store/authStore";
 import { Home, Menu, Settings, User } from "lucide-react";
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import ChatSideBar from "./ChatSideBar";
-import ChatBox from "./ChatBox";
 import { errorNotify } from "@/utils/MessageBar";
 import { get } from "@/config/network";
 import { authorizedGet } from "@/config/networkWithToken";
+import ChatBox from "./ChatBox";
+import ChatSideBar from "./ChatSideBar";
 
 const Chat = () => {
   const { clearUser } = useAuthStore();
