@@ -2,9 +2,31 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Shield, Users, Clock } from "lucide-react";
 import heroImage from "@/assets/hero-therapy.jpg";
 import { useNavigate } from "react-router-dom";
+import useAuthStore from "@/store/authStore";
+import { successNotify } from "@/utils/MessageBar";
 
 const Hero = () => {
   const navigate = useNavigate();
+  const userDetails = useAuthStore((state) => state?.user);
+  const token = userDetails ? userDetails.token : "";
+
+  const handleChatAi = () => {
+    if (!token) {
+      successNotify("Please login to continue!");
+      setTimeout(() => navigate("/login"), 1000);
+      return;
+    }
+    navigate("/chat");
+  };
+
+  const handleBrowseTherapists = () => {
+    if (!token) {
+      successNotify("Please login to continue!");
+      setTimeout(() => navigate("/login"), 1000);
+      return;
+    }
+    navigate("/");
+  };
 
   return (
     <section className="relative min-h-[90vh] flex items-center bg-gradient-to-br from-background via-primary-light/10 to-secondary-light/10 overflow-hidden">
@@ -59,14 +81,12 @@ const Hero = () => {
                 variant="hero"
                 size="xl"
                 className="group"
-                onClick={() => {
-                  navigate("/chat");
-                }}
+                onClick={handleChatAi}
               >
                 Chat With Our AI Mentor
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button variant="soft" size="xl">
+              <Button variant="soft" size="xl" onClick={handleBrowseTherapists}>
                 Browse Therapists
               </Button>
             </div>

@@ -28,7 +28,7 @@ const DoctorDetails = () => {
   const { therapistId } = useParams();
   const navigate = useNavigate();
   const userDetails = useAuthStore((state) => state.user);
-
+  const clientId = userDetails?.id;
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
   const [selectedTimeObj, setSelectedTimeObj] = useState(null);
@@ -80,10 +80,10 @@ const DoctorDetails = () => {
       const formattedDate = format(date, "yyyy-MM-dd");
 
       const res = await authorizedGet(
-        `${apiDetails.endPoint.getAllSlotsForTherapist}?therapistId=${therapistId}&clientId=${therapist.therapistId}&date=${formattedDate}`
+        `${apiDetails.endPoint.getAllSlotsForTherapist}?therapistId=${therapistId}&clientId=${clientId}&date=${formattedDate}`
       );
       if (res.status) {
-        setSlots(res.data?.data);
+        setSlots(res.data?.data || []);
       }
     } catch (err) {
       errorNotify(err.message || "something is wrong");
@@ -103,7 +103,7 @@ const DoctorDetails = () => {
       setPaymentLoading(true);
       const data = {
         therapistId: therapist?.therapistId,
-        clientId: userDetails?.id || therapist?.therapistId,
+        clientId: userDetails?.id,
         timeSlotId: selectedTimeObj?.id,
         bookingDate: format(selectedDate, "yyyy-MM-dd"),
         category: "Design",
@@ -221,7 +221,7 @@ const DoctorDetails = () => {
               {/* About Section */}
               <Card className="shadow-card">
                 <CardHeader>
-                  <CardTitle>About Dr. {doctor.name.split(" ")[1]}</CardTitle>
+                  <CardTitle>About Dr. {therapist?.name}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <div>

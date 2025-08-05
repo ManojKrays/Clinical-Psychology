@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Star, MapPin, Video, MessageCircle, Clock } from "lucide-react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useIsScreenWidth from "@/hooks/useIsScreenWidth";
+import useAuthStore from "@/store/authStore";
+import { successNotify } from "@/utils/MessageBar";
 
 interface TherapistCardProps {
   id: string;
@@ -15,7 +17,7 @@ interface TherapistCardProps {
   amount: number;
   location: string;
   isOnline: boolean;
-  description: string;
+  summary: string;
 }
 
 const TherapistCard = ({
@@ -29,9 +31,30 @@ const TherapistCard = ({
   amount,
   location,
   isOnline,
-  description,
+  summary,
 }: TherapistCardProps) => {
   const isExact320 = useIsScreenWidth(320);
+  const navigate = useNavigate();
+  const userDetails = useAuthStore((state) => state?.user);
+  const token = userDetails ? userDetails.token : "";
+
+  const handleViewProfile = () => {
+    if (!token) {
+      successNotify("Please login to continue!");
+      setTimeout(() => navigate("/login"), 1000);
+      return;
+    }
+    navigate(`/doctor/${id}`);
+  };
+
+  const handleBookSession = () => {
+    if (!token) {
+      successNotify("Please login to continue!");
+      setTimeout(() => navigate("/login"), 1000);
+      return;
+    }
+    navigate(`/doctor/${id}`);
+  };
 
   return (
     <div className="bg-card rounded-xl border border-border shadow-soft hover:shadow-medium transition-all duration-300 overflow-hidden group lg:w-[390px]">
@@ -101,7 +124,7 @@ const TherapistCard = ({
 
         {/* Bio */}
         <p className="text-sm text-muted-foreground line-clamp-3 mb-4 text-justify">
-          {description}
+          {summary}
         </p>
 
         {/* Session Types */}
@@ -130,16 +153,22 @@ const TherapistCard = ({
           </div>
 
           <div className={`flex gap-2 ${isExact320 && "pt-3"}`}>
-            <Link to={`/doctor/${id}`}>
-              <Button variant="outline" size="sm" className="w-full">
-                View Profile
-              </Button>
-            </Link>
-            <Link to={`/doctor/${id}`}>
-              <Button variant="cta" size="sm" className="w-full">
-                Book Now
-              </Button>
-            </Link>
+            <Button
+              variant="outline"
+              size="sm"
+              className="w-full"
+              onClick={handleViewProfile}
+            >
+              View Profile
+            </Button>
+            <Button
+              variant="cta"
+              size="sm"
+              className="w-full"
+              onClick={handleBookSession}
+            >
+              Book Now
+            </Button>
           </div>
         </div>
       </div>
