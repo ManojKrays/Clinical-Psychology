@@ -6,8 +6,8 @@ import PaymentFailure from "@/pages/PaymentFailure";
 import Login from "@/pages/Login";
 import Signup from "@/pages/Signup";
 import ForgotPassword from "@/pages/ForgotPassword";
-import Chat from "@/pages/Chat";
 import Therapist from "@/pages/Therapist";
+import Chat from "@/pages/Chat";
 
 const PublicRoutes = [
   {
