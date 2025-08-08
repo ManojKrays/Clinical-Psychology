@@ -105,9 +105,7 @@ const TherapistCard = ({
         </div>
       </div>
 
-      {/* Content */}
       <div className="px-6 pb-4">
-        {/* Specialties */}
         <div className="flex flex-wrap gap-2 mb-4">
           {categories &&
             categories.slice(0, 3).map((specialty, index) => (

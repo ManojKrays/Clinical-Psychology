@@ -11,7 +11,7 @@ const Header = () => {
   const { clearUser } = useAuthStore();
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const userDetails = useAuthStore((state) => state.user);
-  const role = userDetails ? userDetails.role : "user";
+  const role = userDetails ? userDetails.role : "CLIENT";
   const logoutHandler = () => {
     navigate("/login");
     clearUser();
@@ -84,6 +84,9 @@ const Header = () => {
                     {role !== "ADMIN" && (
                       <button
                         onClick={() => {
+                          role === "THERAPIST"
+                            ? navigate("/therapist-profile")
+                            : navigate("/client-profile");
                           setIsProfileMenuOpen(false);
                         }}
                         className="w-full px-4 py-2 text-left hover:bg-gray-100"
@@ -94,6 +97,13 @@ const Header = () => {
 
                     <button
                       onClick={() => {
+                        if (role === "THERAPIST") {
+                          navigate("/therapistdashboard");
+                        } else if (role === "ADMIN") {
+                          navigate("/AdminDashboard");
+                        } else {
+                          navigate("/clientdashboard");
+                        }
                         setIsProfileMenuOpen(false);
                       }}
                       className="w-full px-4 py-2 text-left hover:bg-gray-100"
@@ -187,6 +197,9 @@ const Header = () => {
                         {role !== "ADMIN" && (
                           <button
                             onClick={() => {
+                              role === "THERAPIST"
+                                ? navigate("/therapist-profile")
+                                : navigate("/client-profile");
                               setIsProfileMenuOpen(false);
                             }}
                             className="w-full px-4 py-2 text-left hover:bg-gray-100"
@@ -198,6 +211,13 @@ const Header = () => {
                         <button
                           className="w-full cursor-pointer px-4 py-2 text-left hover:bg-gray-100"
                           onClick={() => {
+                            if (role === "THERAPIST") {
+                              navigate("/therapistdashboard");
+                            } else if (role === "ADMIN") {
+                              navigate("/AdminDashboard");
+                            } else {
+                              navigate("/clientdashboard");
+                            }
                             setIsProfileMenuOpen(false);
                             setMenuOpen(false);
                           }}

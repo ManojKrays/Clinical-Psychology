@@ -208,7 +208,8 @@ const Application = ({ onNext, formProps }) => {
                   <FormControl>
                     <Input
                       {...field}
-                      type="text"
+                      type="number"
+                      inputMode="numeric"
                       placeholder="Ex: $1000/session"
                       className="bg-white"
                     />

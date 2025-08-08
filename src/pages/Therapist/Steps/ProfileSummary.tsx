@@ -1,5 +1,9 @@
 import React from "react";
-import { specialtiesList } from "../../../utils/data";
+import {
+  educations,
+  languagesOption,
+  specialtiesList,
+} from "../../../utils/data";
 import { Controller } from "react-hook-form";
 import MultiSelectField from "@/components/Multiselectoption";
 import {
@@ -28,7 +32,7 @@ const ProfileSummary = ({ onNext, onPrev, formProps }) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="clear-start w-full flex flex-col gap-6 md:flex-row md:gap-10 md:w-[90%]">
           <div className="w-full md:w-1/2">
-            <p className="text-[15px] font-bold text-gray-600 mb-1">
+            <p className="text-[14px] font-medium text-gray-600 mb-2">
               Which specialties are you interested in?
             </p>
 
@@ -45,6 +49,7 @@ const ProfileSummary = ({ onNext, onPrev, formProps }) => {
                 <>
                   <MultiSelectField
                     name="specialties"
+                    type="searchable"
                     options={specialtiesList}
                     value={field.value}
                     onChange={field.onChange}
@@ -67,7 +72,11 @@ const ProfileSummary = ({ onNext, onPrev, formProps }) => {
               rules={{ required: "Location is required" }}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className={errors.location ? "text-red-600" : ""}>
+                  <FormLabel
+                    className={`${
+                      errors.location ? "text-red-600" : ""
+                    } text-[14px] font-medium text-gray-600`}
+                  >
                     Location{" "}
                     {errors.location && <span className="text-red-600">*</span>}
                   </FormLabel>
@@ -85,6 +94,72 @@ const ProfileSummary = ({ onNext, onPrev, formProps }) => {
                     </p>
                   )}
                 </FormItem>
+              )}
+            />
+          </div>
+        </div>
+        <div className="clear-start w-full flex flex-col gap-6 md:flex-row md:gap-10 md:w-[90%] mt-3">
+          <div className="w-full md:w-1/2">
+            <p className="text-[14px] font-medium text-gray-600 mb-2">
+              Languages
+            </p>
+
+            <Controller
+              name="language"
+              control={control}
+              rules={{
+                validate: (value) =>
+                  value && value.length > 0
+                    ? true
+                    : "Please select at least one Specialty",
+              }}
+              render={({ field, fieldState }) => (
+                <>
+                  <MultiSelectField
+                    name="language"
+                    type="searchable"
+                    options={languagesOption}
+                    value={field.value}
+                    onChange={field.onChange}
+                  />
+                  {fieldState.error && (
+                    <p className="mt-1 text-sm text-red-500">
+                      {fieldState.error.message}
+                    </p>
+                  )}
+                </>
+              )}
+            />
+          </div>
+          <div className="w-full md:w-1/2">
+            <p className="text-[14px] font-medium text-gray-600 mb-2">
+              Education
+            </p>
+
+            <Controller
+              name="education"
+              control={control}
+              rules={{
+                validate: (value) =>
+                  value && value.length > 0
+                    ? true
+                    : "Please select at least one Specialty",
+              }}
+              render={({ field, fieldState }) => (
+                <>
+                  <MultiSelectField
+                    name="education"
+                    type="searchable"
+                    options={educations}
+                    value={field.value}
+                    onChange={field.onChange}
+                  />
+                  {fieldState.error && (
+                    <p className="mt-1 text-sm text-red-500">
+                      {fieldState.error.message}
+                    </p>
+                  )}
+                </>
               )}
             />
           </div>

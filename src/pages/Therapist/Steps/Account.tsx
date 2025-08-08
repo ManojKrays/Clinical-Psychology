@@ -17,6 +17,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { languages } from "countries-list";
 
 const Account = ({ onPrev, formProps, emailVerified, setEmailVerified }) => {
   const {
@@ -91,8 +92,12 @@ const Account = ({ onPrev, formProps, emailVerified, setEmailVerified }) => {
       setIsProcessing(true);
       let categories = [];
       let availableTimes = [];
+      let languages = [];
+      let education = [];
       categories = (data.specialties || []).map((cat) => cat.value);
       availableTimes = (data.timeSlot || []).map((tim) => tim.value);
+      languages = (data.language || []).map((lang) => lang.value);
+      education = (data.education || []).map((edu) => edu.value);
 
       const details = {
         name: data.name,
@@ -109,6 +114,8 @@ const Account = ({ onPrev, formProps, emailVerified, setEmailVerified }) => {
         terms: data.terms,
         location: data.location,
         termsAndConditions: data.terms_condition,
+        languages: languages,
+        education: education,
         timezone,
         timeSlots: availableTimes,
       };
@@ -238,7 +245,13 @@ const Account = ({ onPrev, formProps, emailVerified, setEmailVerified }) => {
                   Experience
                 </FormLabel>
                 <FormControl>
-                  <Input {...field} placeholder="Ex: 10" className="bg-white" />
+                  <Input
+                    {...field}
+                    type="number"
+                    inputMode="numeric"
+                    placeholder="Ex: 10"
+                    className="bg-white"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>

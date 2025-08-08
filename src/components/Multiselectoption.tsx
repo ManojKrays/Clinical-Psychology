@@ -9,7 +9,7 @@ interface OptionType {
 interface MultiSelectFieldProps {
   label?: string;
   name: string;
-  type?: string;
+  type?: string; // if "searchable", enable search
   options: OptionType[];
   value: MultiValue<OptionType>;
   onChange: (selected: MultiValue<OptionType>) => void;
@@ -26,6 +26,7 @@ const MultiSelectField = ({
   error,
 }: MultiSelectFieldProps) => {
   const errorMessage = typeof error === "string" ? error : error?.message;
+  const isSearchable = type === "searchable";
 
   return (
     <div className="md:col-span-2">
@@ -39,6 +40,7 @@ const MultiSelectField = ({
 
       <Select<OptionType, true>
         isMulti
+        isSearchable={isSearchable}
         name={name}
         options={options}
         value={value}
