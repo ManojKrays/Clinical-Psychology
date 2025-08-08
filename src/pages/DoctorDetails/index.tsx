@@ -176,7 +176,7 @@ const DoctorDetails = () => {
                             </div>
                             <div className="flex items-center gap-1">
                               <MapPin className="w-4 h-4" />
-                              <span>{doctor?.location}</span>
+                              <span>{therapist?.location}</span>
                             </div>
                             <div className="flex items-center gap-1">
                               <Clock className="w-4 h-4" />
@@ -234,7 +234,7 @@ const DoctorDetails = () => {
                   <div>
                     <h3 className="font-semibold mb-3">Education</h3>
                     <ul className="space-y-2">
-                      {doctor.education.map((edu, index) => (
+                      {therapist.education.map((edu, index) => (
                         <li key={index} className="flex items-start gap-2">
                           <Check className="w-4 h-4 text-success mt-0.5 flex-shrink-0" />
                           <span className="text-muted-foreground">{edu}</span>
@@ -246,7 +246,7 @@ const DoctorDetails = () => {
                   <div>
                     <h3 className="font-semibold mb-2">Languages</h3>
                     <div className="flex gap-2">
-                      {doctor.languages.map((lang) => (
+                      {therapist.languages.map((lang) => (
                         <Badge key={lang} variant="outline">
                           {lang}
                         </Badge>

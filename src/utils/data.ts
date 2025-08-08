@@ -3,6 +3,7 @@ import therapist2 from "@/assets/therapist-2.jpg";
 import therapist3 from "@/assets/therapist-3.jpg";
 import { Calendar, MessageCircle, Heart, UserCheck } from "lucide-react";
 import String from "./String";
+import { languages } from "countries-list";
 
 export const doctor = {
   id: "1",
@@ -221,3 +222,219 @@ export const cardDetails = [
     des: "Optionally provide free first-time sessions for new clients or platform promotions.",
   },
 ];
+export const educations = [
+  { label: "Ph.D. in Psychology", value: "Ph.D. in Psychology" },
+  {
+    label: "Ph.D. in Clinical Psychology",
+    value: "Ph.D. in Clinical Psychology",
+  },
+  {
+    label: "Ph.D. in Counseling Psychology",
+    value: "Ph.D. in Counseling Psychology",
+  },
+  {
+    label: "Ph.D. in Developmental Psychology",
+    value: "Ph.D. in Developmental Psychology",
+  },
+  {
+    label: "Ph.D. in Educational Psychology",
+    value: "Ph.D. in Educational Psychology",
+  },
+  {
+    label: "Ph.D. in Cognitive Psychology",
+    value: "Ph.D. in Cognitive Psychology",
+  },
+  {
+    label: "Ph.D. in Industrial-Organizational Psychology",
+    value: "Ph.D. in Industrial-Organizational Psychology",
+  },
+  {
+    label: "Ph.D. in Forensic Psychology",
+    value: "Ph.D. in Forensic Psychology",
+  },
+  { label: "Ph.D. in Health Psychology", value: "Ph.D. in Health Psychology" },
+  { label: "Ph.D. in Neuropsychology", value: "Ph.D. in Neuropsychology" },
+  { label: "Ph.D. in Social Psychology", value: "Ph.D. in Social Psychology" },
+  {
+    label: "Psy.D. in Clinical Psychology",
+    value: "Psy.D. in Clinical Psychology",
+  },
+  {
+    label: "Psy.D. in School Psychology",
+    value: "Psy.D. in School Psychology",
+  },
+  {
+    label: "Psy.D. (Doctor of Psychology)",
+    value: "Psy.D. (Doctor of Psychology)",
+  },
+  {
+    label: "M.Phil. in Clinical Psychology",
+    value: "M.Phil. in Clinical Psychology",
+  },
+  {
+    label: "M.Phil. in Counseling Psychology",
+    value: "M.Phil. in Counseling Psychology",
+  },
+  { label: "M.Sc. in Psychology", value: "M.Sc. in Psychology" },
+  {
+    label: "M.Sc. in Clinical Psychology",
+    value: "M.Sc. in Clinical Psychology",
+  },
+  {
+    label: "M.Sc. in Applied Psychology",
+    value: "M.Sc. in Applied Psychology",
+  },
+  {
+    label: "M.Sc. in Counselling Psychology",
+    value: "M.Sc. in Counselling Psychology",
+  },
+  {
+    label: "M.Sc. in Forensic Psychology",
+    value: "M.Sc. in Forensic Psychology",
+  },
+  { label: "M.A. in Psychology", value: "M.A. in Psychology" },
+  { label: "M.A. in Applied Psychology", value: "M.A. in Applied Psychology" },
+  {
+    label: "M.A. in Counselling Psychology",
+    value: "M.A. in Counselling Psychology",
+  },
+  {
+    label: "M.A. in Industrial-Organizational Psychology",
+    value: "M.A. in Industrial-Organizational Psychology",
+  },
+  {
+    label: "M.A. in Educational Psychology",
+    value: "M.A. in Educational Psychology",
+  },
+  { label: "M.A. in Child Psychology", value: "M.A. in Child Psychology" },
+  {
+    label: "M.A. in Clinical Psychology",
+    value: "M.A. in Clinical Psychology",
+  },
+  {
+    label: "M.A. in Counseling Psychology",
+    value: "M.A. in Counseling Psychology",
+  },
+  { label: "M.Sc. in Health Psychology", value: "M.Sc. in Health Psychology" },
+  { label: "M.Sc. in Sports Psychology", value: "M.Sc. in Sports Psychology" },
+  {
+    label: "M.Phil. in Psychiatric Social Work",
+    value: "M.Phil. in Psychiatric Social Work",
+  },
+  {
+    label: "Postgraduate Diploma in Psychological Counselling",
+    value: "Postgraduate Diploma in Psychological Counselling",
+  },
+  {
+    label: "Postgraduate Diploma in Guidance and Counselling",
+    value: "Postgraduate Diploma in Guidance and Counselling",
+  },
+  {
+    label: "Postgraduate Diploma in Rehabilitation Psychology",
+    value: "Postgraduate Diploma in Rehabilitation Psychology",
+  },
+  {
+    label: "Postgraduate Diploma in Mental Health Counseling",
+    value: "Postgraduate Diploma in Mental Health Counseling",
+  },
+  {
+    label: "Postgraduate Diploma in Applied Behavior Analysis",
+    value: "Postgraduate Diploma in Applied Behavior Analysis",
+  },
+  {
+    label: "Postgraduate Diploma in Psychotherapy",
+    value: "Postgraduate Diploma in Psychotherapy",
+  },
+  { label: "B.Sc. in Psychology", value: "B.Sc. in Psychology" },
+  {
+    label: "B.Sc. in Clinical Psychology",
+    value: "B.Sc. in Clinical Psychology",
+  },
+  {
+    label: "B.Sc. in Applied Psychology",
+    value: "B.Sc. in Applied Psychology",
+  },
+  { label: "B.A. in Psychology", value: "B.A. in Psychology" },
+  { label: "B.A. in Applied Psychology", value: "B.A. in Applied Psychology" },
+  {
+    label: "B.A. in Counseling Psychology",
+    value: "B.A. in Counseling Psychology",
+  },
+  {
+    label: "B.Sc. in Cognitive Neuroscience",
+    value: "B.Sc. in Cognitive Neuroscience",
+  },
+  { label: "B.Sc. in Child Psychology", value: "B.Sc. in Child Psychology" },
+  {
+    label: "B.Sc. in Forensic Psychology",
+    value: "B.Sc. in Forensic Psychology",
+  },
+  { label: "B.A. (Hons) in Psychology", value: "B.A. (Hons) in Psychology" },
+  { label: "B.Sc. (Hons) in Psychology", value: "B.Sc. (Hons) in Psychology" },
+  { label: "Diploma in Psychology", value: "Diploma in Psychology" },
+  {
+    label: "Diploma in Child Psychology",
+    value: "Diploma in Child Psychology",
+  },
+  {
+    label: "Diploma in Counselling Psychology",
+    value: "Diploma in Counselling Psychology",
+  },
+  {
+    label: "Diploma in Industrial Psychology",
+    value: "Diploma in Industrial Psychology",
+  },
+  {
+    label: "Diploma in Criminal Psychology",
+    value: "Diploma in Criminal Psychology",
+  },
+  {
+    label: "Certificate in Basic Psychology",
+    value: "Certificate in Basic Psychology",
+  },
+  {
+    label: "Certificate in Child Psychology",
+    value: "Certificate in Child Psychology",
+  },
+  {
+    label: "Certificate in Psychological First Aid",
+    value: "Certificate in Psychological First Aid",
+  },
+  {
+    label: "Certificate in Cognitive Behavioral Therapy (CBT)",
+    value: "Certificate in Cognitive Behavioral Therapy (CBT)",
+  },
+  {
+    label: "Certificate in Dialectical Behavior Therapy (DBT)",
+    value: "Certificate in Dialectical Behavior Therapy (DBT)",
+  },
+  {
+    label: "Certificate in Neuro-Linguistic Programming (NLP)",
+    value: "Certificate in Neuro-Linguistic Programming (NLP)",
+  },
+  {
+    label: "Certificate in Mindfulness-Based Stress Reduction (MBSR)",
+    value: "Certificate in Mindfulness-Based Stress Reduction (MBSR)",
+  },
+  { label: "Certificate in Art Therapy", value: "Certificate in Art Therapy" },
+  {
+    label: "Certificate in Music Therapy",
+    value: "Certificate in Music Therapy",
+  },
+  {
+    label: "Certificate in Addiction Counseling",
+    value: "Certificate in Addiction Counseling",
+  },
+  {
+    label: "Certificate in Marriage and Family Therapy",
+    value: "Certificate in Marriage and Family Therapy",
+  },
+  {
+    label: "Certificate in Grief Counseling",
+    value: "Certificate in Grief Counseling",
+  },
+];
+export const languagesOption = Object.keys(languages).map((code) => ({
+  value: languages[code].name,
+  label: languages[code].name,
+}));
