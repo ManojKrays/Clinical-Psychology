@@ -94,7 +94,7 @@ const DatePickerModel = ({ session, onUpdate }) => {
     <div>
       <button
         onClick={toggleModal}
-        className="bg-yellow h-10 w-20 lg:w-30 rounded border px-2 py-1 text-[12px] lg:text-sm text-white hover:opacity-90"
+        className="bg-gradient-secondary h-10 w-20 lg:w-30 rounded border px-2 py-1 text-[12px]  text-white hover:opacity-90"
       >
         {buttonLabel}
       </button>

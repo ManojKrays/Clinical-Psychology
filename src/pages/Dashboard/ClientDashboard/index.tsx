@@ -124,7 +124,7 @@ const ClientDashboard = () => {
                       setSelectedBookingId(session.bookingId);
                       setShowConfirmModal(true);
                     }}
-                    className="h-10 w-20 rounded border px-2 py-1 text-[12px] hover:opacity-90 lg:w-30"
+                    className="h-10 w-20  bg-gray-200 rounded border px-2 py-1 text-[12px] hover:opacity-90 lg:w-30"
                   >
                     Cancel
                   </button>
@@ -138,7 +138,7 @@ const ClientDashboard = () => {
                   />
                   <button
                     onClick={() => handleJoinZoom(session?.clientMeetLink)}
-                    className="bg-primary h-10 w-20 rounded text-sm text-white hover:opacity-90 lg:w-30"
+                    className="bg-secondary h-10 w-20 rounded text-sm text-white hover:opacity-90 lg:w-30"
                   >
                     Join Now
                   </button>

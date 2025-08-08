@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Brain, Menu, X } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuthStore from "@/store/authStore";
 import Images from "@/utils/Images";
 
@@ -23,11 +23,11 @@ const Header = () => {
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border shadow-soft">
       <div className="container mx-auto px-4 py-4">
         <div className="flex  items-center justify-between w-full">
-          <div
-            className="flex flex-row justify-between items-center lg:gap-60 gap-10"
-            onClick={() => navigate("/")}
-          >
-            <div className="flex items-center gap-2">
+          <div className="flex flex-row justify-between items-center lg:gap-60 gap-10">
+            <div
+              className="flex items-center gap-2"
+              onClick={() => navigate("/")}
+            >
               <div className="w-10 h-10 rounded-lg bg-gradient-primary flex items-center justify-center">
                 <Brain className="w-6 h-6 text-primary-foreground" />
               </div>
@@ -38,30 +38,35 @@ const Header = () => {
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center justify-center gap-8 text-[14px] lg:text-[16px]">
-              <a
-                href="#therapists"
-                className="text-foreground hover:text-primary transition-colors"
+              <div
+                className="flex items-center space-x-5"
+                onClick={() => navigate("/")}
               >
-                Find Therapists
-              </a>
-              <a
-                href="#how-it-works"
-                className="text-foreground hover:text-primary transition-colors"
-              >
-                How It Works
-              </a>
-              <a
-                href="#about"
+                <a
+                  href="#therapists"
+                  className="text-foreground hover:text-primary transition-colors"
+                >
+                  Find Therapists
+                </a>
+                <a
+                  href="#how-it-works"
+                  className="text-foreground hover:text-primary transition-colors"
+                >
+                  How It Works
+                </a>
+              </div>
+              <Link
+                to="/About"
                 className="text-foreground hover:text-primary transition-colors"
               >
                 About
-              </a>
-              <a
-                href="#contact"
+              </Link>
+              <Link
+                to="/contact"
                 className="text-foreground hover:text-primary transition-colors"
               >
                 Contact
-              </a>
+              </Link>
             </nav>
           </div>
 
@@ -249,30 +254,35 @@ const Header = () => {
         {menuOpen && (
           <div className="md:hidden mt-4 space-y-4">
             <nav className="flex flex-col gap-4 ">
-              <a
-                href="#therapists"
-                className="text-foreground hover:text-primary transition-colors"
+              <div
+                className="flex flex-col gap-5"
+                onClick={() => navigate("/")}
               >
-                Find Therapists
-              </a>
-              <a
-                href="#how-it-works"
-                className="text-foreground hover:text-primary transition-colors"
-              >
-                How It Works
-              </a>
-              <a
-                href="#about"
+                <a
+                  href="#therapists"
+                  className="text-foreground hover:text-primary transition-colors"
+                >
+                  Find Therapists
+                </a>
+                <a
+                  href="#how-it-works"
+                  className="text-foreground hover:text-primary transition-colors"
+                >
+                  How It Works
+                </a>
+              </div>
+              <Link
+                to="/About"
                 className="text-foreground hover:text-primary transition-colors"
               >
                 About
-              </a>
-              <a
-                href="#contact"
+              </Link>
+              <Link
+                to="/contact"
                 className="text-foreground hover:text-primary transition-colors"
               >
                 Contact
-              </a>
+              </Link>
             </nav>
             {!userDetails && (
               <div className="flex flex-col gap-3">
