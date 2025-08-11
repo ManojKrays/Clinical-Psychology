@@ -52,6 +52,7 @@ const TherapistProfile = () => {
   const userDetails = useAuthStore((state) => state.user);
   const queryClient = useQueryClient();
   const therapistId = userDetails.id;
+  const therapistName = userDetails.name;
   const fieldsList = [
     { label: "Email", name: "email" },
     { label: "Phone Number", name: "phone" },
@@ -118,11 +119,7 @@ const TherapistProfile = () => {
     }
   };
 
-  const {
-    data: profileData,
-    isLoading,
-    isFetching,
-  } = useQuery<TherapistProfileType>({
+  const { data: profileData, isLoading } = useQuery<TherapistProfileType>({
     queryKey: ["therapistProfile", therapistId],
     queryFn: fetchTherapistProfile,
     refetchOnMount: true,
@@ -138,13 +135,10 @@ const TherapistProfile = () => {
 
   useMutation({
     mutationFn: updateTherapistProfile,
-    onSuccess: () => {
+    onSuccess: (updatedData) => {
+      queryClient.setQueryData(["therapistProfile", therapistId], updatedData);
       queryClient.invalidateQueries({
         queryKey: ["therapistProfile", therapistId],
-      });
-      queryClient.prefetchQuery({
-        queryKey: ["therapistProfile", therapistId],
-        queryFn: fetchTherapistProfile,
       });
       setEditMode(false);
     },
@@ -193,7 +187,7 @@ const TherapistProfile = () => {
       languages: formData?.languages,
     };
 
-    updateUser({ profileUrl: imageUrl });
+    updateUser({ profileUrl: imageUrl, name: formData?.name });
 
     try {
       const updatedData = await updateTherapistProfile(dataToSave);
@@ -290,7 +284,7 @@ const TherapistProfile = () => {
     }
   };
 
-  if (isLoading || isFetching)
+  if (isLoading)
     return (
       <div className="flex min-h-screen items-center justify-center">
         <Loader />
@@ -304,7 +298,7 @@ const TherapistProfile = () => {
       <div className="mx-auto h-full lg:w-[80%] w-[90%] p-6 ">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold font-agency">
-            {profileData?.name}'s Profile
+            {therapistName}'s Profile
           </h2>
           {editMode ? (
             <div className="flex flex-col sm:flex-row gap-3 sm:items-center">

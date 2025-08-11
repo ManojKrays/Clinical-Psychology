@@ -18,7 +18,7 @@ const Contactus = () => {
         </div>
       </div>
       <div className="flex flex-col gap-6 p-2 pt-10 pb-20 md:flex-row">
-        <div className="bg-light w-full rounded-lg border border-orange-300 p-4 shadow-md">
+        <div className="bg-light w-full rounded-lg border border-secondary p-4 shadow-md">
           <div className="mb-3 flex items-center gap-2">
             <button className="cursor-pointer text-black hover:text-blue-500">
               <Mail className="h-6 w-6" />
@@ -35,7 +35,7 @@ const Contactus = () => {
             </div>
           </div>
           <div className="flex w-full pt-2">
-            <button className="flex w-full bg-[#E9DAB2] p-1 text-sm text-justify items-center justify-center">
+            <button className="flex w-full bg-[#b2e0e9] p-1 text-sm text-justify items-center justify-center">
               We typically respond to all messages within 1–2 business days.
             </button>
           </div>

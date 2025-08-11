@@ -9,7 +9,7 @@ import approval from "@/assets/approved.png";
 import therapist from "@/assets/therepist.png";
 import uploadIcon from "@/assets/upload.png";
 import tick from "@/assets/tick.svg";
-import Therapist from "@/assets/therapist.png";
+import Therapist from "@/assets/Therapist.png";
 import Client from "@/assets/client.png";
 import contact from "@/assets/contact.png";
 
