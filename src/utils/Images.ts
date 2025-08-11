@@ -9,8 +9,8 @@ import approval from "@/assets/approved.png";
 import therapist from "@/assets/therepist.png";
 import uploadIcon from "@/assets/upload.png";
 import tick from "@/assets/tick.svg";
-import Therapist from "@/assets/therapist.png";
-import Client from "@/assets/client.png";
+import TherapistImage from "@/assets/TherapistImage.png";
+import Client from "@/assets/Client.png";
 import contact from "@/assets/contact.png";
 
 const Images = {
@@ -25,7 +25,7 @@ const Images = {
   THERAPIST: therapist,
   UPLOADICON: uploadIcon,
   TICK: tick,
-  THERAPISTIMAGE: Therapist,
+  THERAPISTIMAGE: TherapistImage,
   CLIENTIMAGE: Client,
   CONTACTUS: contact,
 };

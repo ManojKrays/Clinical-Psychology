@@ -39,6 +39,7 @@ const ClientProfile = () => {
   const [validationErrors, setValidationErrors] = useState({});
   const userDetails = useAuthStore((state) => state.user);
   const clientId = userDetails.id;
+  const clientName = userDetails.name;
   const queryClient = useQueryClient();
   useEffect(() => {
     const handleBeforeUnload = (e) => {
@@ -98,11 +99,7 @@ const ClientProfile = () => {
     }
   };
 
-  const {
-    data: profileData,
-    isLoading,
-    isFetching,
-  } = useQuery<ClientProfileType>({
+  const { data: profileData, isLoading } = useQuery<ClientProfileType>({
     queryKey: ["clientProfile", clientId],
     queryFn: fetchClientProfile,
     refetchOnMount: true,
@@ -118,13 +115,10 @@ const ClientProfile = () => {
 
   useMutation({
     mutationFn: updateClientProfile,
-    onSuccess: () => {
+    onSuccess: (updatedData) => {
+      queryClient.setQueryData(["clientProfile", clientId], updatedData);
       queryClient.invalidateQueries({
         queryKey: ["clientProfile", clientId],
-      });
-      queryClient.prefetchQuery({
-        queryKey: ["clientProfile", clientId],
-        queryFn: fetchClientProfile,
       });
       setEditMode(false);
     },
@@ -147,7 +141,6 @@ const ClientProfile = () => {
       return;
     }
     setValidationErrors({});
-    updateValueInLocalStorage("userDetails", formData);
     setUser((prev) => ({ ...prev, ...formData }));
     const dataToSave = {
       profileUrl: imageUrl,
@@ -161,7 +154,11 @@ const ClientProfile = () => {
       summary: formData?.summary,
     };
 
-    updateUser({ profileUrl: imageUrl });
+    updateUser({ ...userDetails, profileUrl: imageUrl, name: formData?.name });
+    updateValueInLocalStorage("userDetails", {
+      profileUrl: imageUrl,
+      name: formData?.name,
+    });
     try {
       const updatedData = await updateClientProfile(dataToSave);
       queryClient.setQueryData(["clientProfile"], updatedData);
@@ -202,7 +199,7 @@ const ClientProfile = () => {
     }
   };
 
-  if (isLoading || isFetching)
+  if (isLoading)
     return (
       <div className="flex min-h-screen items-center justify-center">
         <Loader />
@@ -216,7 +213,7 @@ const ClientProfile = () => {
       <div className="mx-auto h-full lg:w-[80%] w-[90%] p-6 ">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold font-agency">
-            {profileData?.name}'s Profile
+            {clientName}'s Profile
           </h2>
           {editMode ? (
             <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
@@ -326,6 +323,7 @@ const ClientProfile = () => {
                         <Input
                           {...field}
                           type="text"
+                          readOnly
                           value={field.value || ""}
                           onChange={(e) => field.onChange(e.target.value)}
                         />
