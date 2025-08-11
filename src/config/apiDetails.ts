@@ -28,6 +28,7 @@ const apiDetails = {
     getAllClientsOverview: "/admin/clients/overview",
     clientSessionCancel: "/client/bookings",
     getScheduleBooking: "/client/bookings",
+    Contact: "/contact-messages",
   },
 };
 

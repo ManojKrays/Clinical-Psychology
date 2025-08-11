@@ -140,7 +140,7 @@ const TherapistOnboardingRequest = () => {
                     // ) :
                     <>
                       <button
-                        className="bg-primary w-[80px] rounded px-4 py-2 text-sm text-white hover:opacity-90"
+                        className="bg-secondary w-[80px] rounded px-4 py-2 text-sm text-white hover:opacity-90"
                         onClick={() =>
                           handleStatusUpdate(data?.therapistId, "approved")
                         }

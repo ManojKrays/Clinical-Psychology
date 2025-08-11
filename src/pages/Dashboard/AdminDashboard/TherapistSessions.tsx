@@ -44,14 +44,14 @@ const TherapistSessions = () => {
     switch (status) {
       case "upcoming":
         return (
-          <button className="bg-primary w-30 rounded px-5 py-2 text-sm text-white hover:opacity-90">
+          <button className="bg-secondary w-30 rounded px-5 py-2 text-sm text-white hover:opacity-90">
             Join Now
           </button>
         );
       case "ongoing":
         return (
-          <button className="bg-primary flex w-30 items-center gap-2 rounded border px-4 py-2 text-sm text-white transition hover:opacity-90">
-            <CheckCircle className="bg-primary h-4 w-4" />
+          <button className="bg-secondary flex w-30 items-center gap-2 rounded border px-4 py-2 text-sm text-white transition hover:opacity-90">
+            <CheckCircle className="bg-secondary h-4 w-4" />
             Complete
           </button>
         );

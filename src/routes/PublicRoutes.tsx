@@ -8,6 +8,11 @@ import Signup from "@/pages/Signup";
 import ForgotPassword from "@/pages/ForgotPassword";
 import Therapist from "@/pages/Therapist";
 import Chat from "@/pages/Chat";
+import Terms from "@/pages/Terms";
+import Faq from "@/pages/Faq";
+import PrivacyPolicy from "@/pages/Privacy";
+import Contactus from "@/pages/Contactus";
+import Aboutus from "@/pages/Aboutus";
 
 const PublicRoutes = [
   {
@@ -23,6 +28,11 @@ const PublicRoutes = [
         path: "/doctor/:therapistId",
         element: <DoctorDetails />,
       },
+      { path: "/terms", element: <Terms /> },
+      { path: "/faq", element: <Faq /> },
+      { path: "/privacy-policy", element: <PrivacyPolicy /> },
+      { path: "/contact", element: <Contactus /> },
+      { path: "/About", element: <Aboutus /> },
     ],
   },
   {

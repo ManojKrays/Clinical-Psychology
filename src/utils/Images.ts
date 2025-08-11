@@ -11,6 +11,8 @@ import uploadIcon from "@/assets/upload.png";
 import tick from "@/assets/tick.svg";
 import Therapist from "@/assets/therapist.png";
 import Client from "@/assets/client.png";
+import contact from "@/assets/contact.png";
+
 const Images = {
   ZOOM: zoom,
   BOT: bot,
@@ -25,6 +27,7 @@ const Images = {
   TICK: tick,
   THERAPISTIMAGE: Therapist,
   CLIENTIMAGE: Client,
+  CONTACTUS: contact,
 };
 
 export default Images;
