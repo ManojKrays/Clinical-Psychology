@@ -10,7 +10,7 @@ import therapist from "@/assets/therepist.png";
 import uploadIcon from "@/assets/upload.png";
 import tick from "@/assets/tick.svg";
 import TherapistImage from "@/assets/TherapistImage.png";
-import Client from "@/assets/client.png";
+import Client from "@/assets/Client.png";
 import contact from "@/assets/contact.png";
 
 const Images = {
