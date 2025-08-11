@@ -54,7 +54,7 @@ const AdminDashboard = () => {
               <button
                 className={`mr-10 cursor-pointer border-b-2 pb-2 text-[12px] font-medium sm:text-[14px] ${
                   activeTab === "therapistOnboardingRequests"
-                    ? "border-primary text-primary"
+                    ? "border-secondary text-secondary"
                     : "border-white text-black"
                 }`}
                 onClick={() => setActiveTab("therapistOnboardingRequests")}
@@ -64,7 +64,7 @@ const AdminDashboard = () => {
               <button
                 className={`mr-10 cursor-pointer border-b-2 pb-2 text-[12px] font-medium sm:text-[14px] ${
                   activeTab === "therapistsSessions"
-                    ? "border-primary text-primary"
+                    ? "border-secondary text-secondary"
                     : "border-white text-black"
                 }`}
                 onClick={() => setActiveTab("therapistsSessions")}
@@ -74,7 +74,7 @@ const AdminDashboard = () => {
               <button
                 className={`cursor-pointer border-b-2 pb-2 text-[12px] font-medium sm:text-[14px] ${
                   activeTab === "clientsSessions"
-                    ? "border-primary text-primary"
+                    ? "border-secondary text-secondary"
                     : "border-white text-black"
                 }`}
                 onClick={() => setActiveTab("clientsSessions")}

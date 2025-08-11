@@ -25,7 +25,12 @@ const Hero = () => {
       setTimeout(() => navigate("/login"), 1000);
       return;
     }
-    navigate("/");
+
+    navigate("/", { replace: false });
+    setTimeout(() => {
+      const el = document.getElementById("therapists");
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }, 100);
   };
 
   return (

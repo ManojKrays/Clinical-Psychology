@@ -82,13 +82,13 @@ const TherapistOnboardingRequest = () => {
                 <div>
                   <div className="mb-4 grid grid-cols-1 gap-x-1 text-[12px] md:grid-cols-4">
                     <div>
-                      <span className="text-primary font-semibold">
+                      <span className="text-secondary font-semibold">
                         Therapist Name
                       </span>
                       <div className="font-bold">{data?.name}</div>
                     </div>
                     <div>
-                      <span className="text-primary font-semibold">
+                      <span className="text-secondary font-semibold">
                         Profile
                       </span>
                       <div className="font-bold text-black">
@@ -96,13 +96,13 @@ const TherapistOnboardingRequest = () => {
                       </div>
                     </div>
                     <div>
-                      <span className="text-primary font-semibold">
+                      <span className="text-secondary font-semibold">
                         Expected Per Session
                       </span>
                       <div className="font-bold text-black">{data?.amount}</div>
                     </div>
                     <div>
-                      <span className="text-primary font-semibold">
+                      <span className="text-secondary font-semibold">
                         Interests
                       </span>
                       <div className="font-bold text-black">
@@ -112,7 +112,7 @@ const TherapistOnboardingRequest = () => {
                   </div>
 
                   <div className="text-[12px]">
-                    <span className="text-primary mb-1 block font-semibold">
+                    <span className="text-secondary mb-1 block font-semibold">
                       Therapist Profile Summary
                     </span>
                     <p className="line-clamp-2 text-justify text-gray-700">
@@ -121,11 +121,11 @@ const TherapistOnboardingRequest = () => {
                   </div>
                 </div>
 
-                <div className="mt-4 flex flex-row justify-center space-x-2 sm:space-y-2 md:space-y-0 lg:flex-col lg:space-y-2 lg:pr-10">
+                <div className="mt-4 flex flex-row justify-center space-x-2 sm:space-y-2 md:space-y-0 lg:flex-col lg:space-y-2 lg:pr-10 ">
                   {
                     // data?.approvalStatus === "approved" ? (
                     //     <button
-                    //         className="bg-primary w-25 cursor-not-allowed rounded px-4 py-2 text-sm text-white opacity-60"
+                    //         className="bg-secondary w-25 cursor-not-allowed rounded px-4 py-2 text-sm text-white opacity-60"
                     //         disabled
                     //     >
                     //         Approved
@@ -140,7 +140,7 @@ const TherapistOnboardingRequest = () => {
                     // ) :
                     <>
                       <button
-                        className="bg-secondary w-[80px] rounded px-4 py-2 text-sm text-white hover:opacity-90"
+                        className="bg-secondary w-[80px] rounded px-4 py-2 text-sm text-white hover:opacity-90 lg:ml-2"
                         onClick={() =>
                           handleStatusUpdate(data?.therapistId, "approved")
                         }
