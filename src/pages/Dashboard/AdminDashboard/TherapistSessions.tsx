@@ -92,27 +92,29 @@ const TherapistSessions = () => {
 
                 <div className="flex flex-col gap-4 text-[12px] md:grid md:grid-cols-5 md:text-[8px] lg:text-[12px]">
                   <div>
-                    <p className="text-primary">Session date & time</p>
+                    <p className="text-secondary font-bold">
+                      Session date & time
+                    </p>
                     <p className="font-medium">{session?.sessionTime}</p>
                   </div>
                   <div>
-                    <p className="text-primary">Session Duration</p>
+                    <p className="text-secondary font-bold">Session Duration</p>
                     <p className="font-medium">{session?.sessionDuration}</p>
                   </div>
                   <div>
-                    <p className="text-primary">Client Name</p>
+                    <p className="text-secondary font-bold">Client Name</p>
                     <p className="font-medium">{session?.clientName}</p>
                   </div>
                   <div>
-                    <p className="text-primary">Therapist Name</p>
+                    <p className="text-secondary font-bold">Therapist Name</p>
                     <p className="font-medium">{session?.therapistName}</p>
                   </div>
                   <div>
-                    <p className="text-primary">Session Name</p>
+                    <p className="text-secondary font-bold">Session Name</p>
                     <p className="font-medium">{session?.sessionName}</p>
                   </div>
                   <div className="col-span-2 sm:col-span-1">
-                    <p className="text-primary">Meeting Type</p>
+                    <p className="text-secondary font-bold">Meeting Type</p>
                     <p className="flex items-center gap-1 font-medium">
                       <img src={Images.ZOOM} alt="zoom" className="h-5 w-5" />
                       {session?.meetType}

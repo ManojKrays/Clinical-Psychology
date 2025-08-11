@@ -10,7 +10,7 @@ const String = {
   UPLOADPROFILE: "Upload Profile Photo",
   THERAPISTTERMS:
     "By applying to become a therapist on Psyconnect, you agree to the following terms and conditions:",
-  SUPPORT: "support@mentorboosters.com",
+  SUPPORT: "support@psyconnect.com",
   CALL: "Monday to Friday ",
   TIME: "9:00 AM – 6:00 PM (15 Wellesley St W, Unit 201, Toronto, ON M4Y 0G7)",
   GETINTOUCH: "Get in Touch with Psy Connect",

@@ -1,4 +1,5 @@
 const apiDetails = {
+  // baseUrl: "http://56.228.24.109:8080/api",
   baseUrl: "https://mentorbooster.duckdns.org/api",
   endPoint: {
     getAllSlotsForTherapist: "/getTimeSlotsForTherapist",
