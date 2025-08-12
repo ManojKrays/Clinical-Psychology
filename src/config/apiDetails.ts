@@ -1,6 +1,7 @@
 const apiDetails = {
   // baseUrl: "http://56.228.24.109:8080/api",
-  baseUrl: "https://mentorbooster.duckdns.org/api",
+  // baseUrl: "https://mentorbooster.duckdns.org/api",
+  baseUrl: "https://clinical-psychology-node-backend.onrender.com/api",
   endPoint: {
     getAllSlotsForTherapist: "/getTimeSlotsForTherapist",
     checkout: "/checkout",
