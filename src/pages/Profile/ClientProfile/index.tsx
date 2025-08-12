@@ -277,24 +277,24 @@ const ClientProfile = () => {
               }
             />
             <div className="relative w-full mt-3">
-              {editMode ? (
-                <Controller
-                  control={control}
-                  name="summary"
-                  render={({ field }) => (
+              <Controller
+                control={control}
+                name="summary"
+                render={({ field }) =>
+                  editMode ? (
                     <Textarea
                       {...field}
                       rows={10}
                       className="resize-none text-justify"
                       placeholder="Enter your summary"
                     />
-                  )}
-                />
-              ) : (
-                <div className="line-clamp-6 text-gray-500 text-justify text-[14px] md:p-5">
-                  {showValue(profileData?.summary || "No summary provided.")}
-                </div>
-              )}
+                  ) : (
+                    <div className="line-clamp-6 text-gray-500 text-justify text-[14px] md:p-5">
+                      {showValue(field.value || "No summary provided.")}
+                    </div>
+                  )
+                }
+              />
             </div>
           </div>
 
