@@ -10,13 +10,14 @@ import {
 } from "@/components/ui/select";
 import TherapistCard from "../../components/TherapistCard";
 import { Search, Filter, MapPin, DollarSign, Star } from "lucide-react";
-import { locations, specialties } from "@/utils/data";
+import { specialties } from "@/utils/data";
 import { useQuery } from "@tanstack/react-query";
 import { errorNotify } from "@/utils/MessageBar";
 import { get } from "@/config/network";
 import apiDetails from "@/config/apiDetails";
 import Loader from "@/components/Loader";
 import useDebounce from "@/hooks/useDebounce";
+import { City } from "country-state-city";
 
 const TherapistDirectory = () => {
   type FilterType = {
@@ -35,10 +36,17 @@ const TherapistDirectory = () => {
 
   const [searchInput, setSearchInput] = useState("");
   const debouncedSearch = useDebounce(searchInput, 500);
+  const [allCities, setAllCities] = useState([]);
+  const [searchCity, setSearchCity] = useState("");
 
   useEffect(() => {
     setFilter((prev) => ({ ...prev, name: debouncedSearch }));
   }, [debouncedSearch]);
+  useEffect(() => {
+    const cities = City.getAllCities();
+    const uniqueCities = [...new Set(cities.map((city) => city.name))].sort();
+    setAllCities(uniqueCities);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -136,12 +144,27 @@ const TherapistDirectory = () => {
                 </div>
               </SelectTrigger>
               <SelectContent>
+                {/* Search box */}
+                <div className="p-2">
+                  <Input
+                    placeholder="Search city..."
+                    value={searchCity}
+                    onChange={(e) => setSearchCity(e.target.value)}
+                    className="pl-3"
+                  />
+                </div>
+
                 <SelectItem value="null">All Locations</SelectItem>
-                {locations.map((location) => (
-                  <SelectItem key={location} value={location}>
-                    {location}
-                  </SelectItem>
-                ))}
+                {allCities
+                  .filter((city) =>
+                    city.toLowerCase().includes(searchCity.toLowerCase())
+                  )
+                  .slice(0, 50)
+                  .map((city) => (
+                    <SelectItem key={city} value={city}>
+                      {city}
+                    </SelectItem>
+                  ))}
               </SelectContent>
             </Select>
 
@@ -163,7 +186,8 @@ const TherapistDirectory = () => {
                 <SelectItem value="0-100">$0 - $100</SelectItem>
                 <SelectItem value="100-150">$100 - $150</SelectItem>
                 <SelectItem value="150-200">$150 - $200</SelectItem>
-                <SelectItem value="200+">$200+</SelectItem>
+                <SelectItem value="200-500">$200 - $500</SelectItem>
+                <SelectItem value="500+">$500+</SelectItem>
               </SelectContent>
             </Select>
           </div>
