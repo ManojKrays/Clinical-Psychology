@@ -411,6 +411,7 @@ const TherapistProfile = () => {
                           type="text"
                           value={f.value || ""}
                           onChange={(e) => f.onChange(e.target.value)}
+                          readOnly={field.name === "email"}
                         />
                       );
                     } else {
