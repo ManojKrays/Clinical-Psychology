@@ -88,7 +88,7 @@ const Hero = () => {
                 className="group"
                 onClick={handleChatAi}
               >
-                Chat With Our AI Mentor
+                Chat With Our AI Therapist
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button variant="soft" size="xl" onClick={handleBrowseTherapists}>
