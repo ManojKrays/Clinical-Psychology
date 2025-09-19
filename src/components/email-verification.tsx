@@ -54,7 +54,7 @@ const EmailVerification = ({
         errorNotify("Failed to send OTP.");
       }
     } catch (err) {
-      errorNotify("Error sending OTP.");
+      errorNotify(err?.message || "Error sending OTP.");
       console.error(err);
     } finally {
       setSendingOtp(false);
