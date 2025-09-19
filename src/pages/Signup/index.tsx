@@ -320,7 +320,7 @@ const Signup = () => {
                 type="submit"
                 variant="cta"
                 className="md:w-[300px] w-[200px]"
-                disabled={isProcessing || !isEmailVerified}
+                disabled={isProcessing}
               >
                 {isProcessing
                   ? isProcessing && (
