@@ -23,15 +23,25 @@ const Chat = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
 
   const [token, setToken] = useState("");
+  const [tokenExpiry, setTokenExpiry] = useState(0);
 
   const getSSEToken = async () => {
     try {
       const res = await authorizedGet(`${apiDetails.endPoint.sseToken}`);
-      setToken(res?.data?.data);
+      const newToken = res?.data?.data;
+      setToken(newToken);
+      setTokenExpiry(Date.now() + 20 * 60 * 1000);
     } catch (err) {
       console.log(err);
       errorNotify("Something Went Wrong!");
     }
+  };
+
+  const getValidToken = async () => {
+    if (!token || Date.now() >= tokenExpiry) {
+      await getSSEToken();
+    }
+    return token;
   };
 
   useEffect(() => {
@@ -66,6 +76,8 @@ const Chat = () => {
     };
     sendNext();
     getSSEToken();
+    const interval = setInterval(getSSEToken, 19 * 60 * 1000);
+    return () => clearInterval(interval);
   }, []);
 
   const menuItems = [
@@ -80,7 +92,8 @@ const Chat = () => {
     localStorage.clear();
   };
 
-  const handlePromptSend = () => {
+  const handlePromptSend = async () => {
+    const validToken = await getValidToken();
     const userMessage = { type: "user", content: prompt };
     setMessages((prev) => [...prev, userMessage]);
     setPrompt("");
@@ -91,13 +104,13 @@ const Chat = () => {
     const eventSource = new EventSource(
       `${apiDetails.baseUrl}/ai-therapist/stream?message=${encodeURIComponent(
         prompt
-      )}&token=${encodeURIComponent(token)}`
+      )}&token=${encodeURIComponent(validToken)}`
     );
 
     eventSource.onmessage = (event) => {
       if (event.data === "[DONE]") {
         setMessages((prev) => [
-          ...prev.filter((m) => m.type !== "__streaming__"),
+          ...prev.filter((m) => m.type !== "_streaming_"),
           { type: "bot", content: botMessage },
         ]);
         setIsTyping(false);
@@ -108,8 +121,8 @@ const Chat = () => {
       botMessage += event.data;
 
       setMessages((prev) => [
-        ...prev.filter((m) => m.type !== "__streaming__"),
-        { type: "__streaming__", content: botMessage },
+        ...prev.filter((m) => m.type !== "_streaming_"),
+        { type: "_streaming_", content: botMessage },
       ]);
     };
 
