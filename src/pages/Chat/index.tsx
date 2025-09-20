@@ -108,6 +108,19 @@ const Chat = () => {
     );
 
     eventSource.onmessage = (event) => {
+      if (event.data.includes("You have reached the free chat limit")) {
+        setMessages((prev) => [
+          ...prev,
+          {
+            type: "limit",
+            content: "You have reached the free chat limit. Please upgrade.",
+          },
+        ]);
+        setIsTyping(false);
+        eventSource.close();
+        return;
+      }
+
       if (event.data === "[DONE]") {
         setMessages((prev) => [
           ...prev.filter((m) => m.type !== "_streaming_"),
@@ -119,7 +132,6 @@ const Chat = () => {
       }
 
       botMessage += event.data;
-
       setMessages((prev) => [
         ...prev.filter((m) => m.type !== "_streaming_"),
         { type: "_streaming_", content: botMessage },
