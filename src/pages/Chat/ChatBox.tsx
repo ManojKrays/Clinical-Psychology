@@ -1,6 +1,11 @@
 import { SendHorizontal } from "lucide-react";
-import React from "react";
+import React, {  useState } from "react";
 import Images from "../../utils/Images";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import useAuthStore from "@/store/authStore";
+import { authorizedPost } from "@/config/networkWithToken";
+import apiDetails from "@/config/apiDetails";
 
 const ChatBox = ({
   messages,
@@ -10,10 +15,40 @@ const ChatBox = ({
   setPrompt,
   handlePromptSend,
 }) => {
+  const navigate = useNavigate();
+
   const nonStreamingMessages = messages.filter(
     (msg) => msg.type !== "__streaming__"
   );
   const streamingMessage = messages.find((msg) => msg.type === "__streaming__");
+  const [paymentLoading, setPaymentLoading] = useState(false);
+   const userDetails = useAuthStore((state) => state.user);
+  const clientId = userDetails?.id;
+
+
+  const handlePayment = async () => {
+    try {
+      setPaymentLoading(true);
+      const data = {
+        clientId: userDetails?.id,
+        amount: 500,
+        currency: "INR",
+        productName: "AI Chat Package",
+        quantity: 1,
+      };
+      console.log("Booking Details", data);
+
+      const res = await authorizedPost(apiDetails.endPoint.chat_checkout, data);
+      console.log(res);
+      if (res.status) {
+       window.location.href = res?.data?.data?.sessionUrl;
+      }
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setPaymentLoading(false);
+    }
+  };
 
   return (
     <div className="scrollable h-[100dvh] flex-1 overflow-y-auto bg-gray-100 pt-10 lg:px-20">
@@ -21,10 +56,7 @@ const ChatBox = ({
         <div className="flex-1 space-y-2 overflow-y-auto p-3 text-sm">
           {nonStreamingMessages.map((msg, idx) => {
             const isBot = msg.type === "bot";
-            const isLastBot =
-              isBot &&
-              (idx === nonStreamingMessages.length - 1 ||
-                nonStreamingMessages[idx + 1]?.type !== "bot");
+            const isLimit = msg.type === "limit";
 
             return (
               <div
@@ -36,10 +68,8 @@ const ChatBox = ({
                 }`}
               >
                 <div className="h-8 w-8 flex-shrink-0 overflow-hidden rounded-full">
-                  {isBot && isLastBot ? (
+                  {isBot || isLimit ? (
                     <img src={Images.BOT} alt="bot icon" className="h-8 w-8" />
-                  ) : isBot ? (
-                    <div className="h-8 w-8" />
                   ) : msg.type === "user" ? (
                     <img
                       src={Images.USER}
@@ -56,12 +86,29 @@ const ChatBox = ({
                       : "rounded-bl-none bg-white text-gray-800"
                   }`}
                 >
-                  {msg.content}
+                  {isLimit ? (
+                    <div className="flex flex-col items-start space-y-2">
+                      <p>{msg.content}</p>
+                      
+                      <Button
+                        variant="cta"
+                        size="sm"
+                        className="w-full"
+                          disabled={paymentLoading}
+                         onClick= {handlePayment}
+                      >
+                        Upgrade the Plan Now
+                      </Button>
+                    </div>
+                  ) : (
+                    msg.content
+                  )}
                 </div>
               </div>
             );
           })}
 
+          {/* streaming message + typing indicator same as before */}
           {streamingMessage && (
             <div className="mr-auto flex max-w-[80%] items-end space-x-2">
               <div className="h-8 w-8 flex-shrink-0 overflow-hidden rounded-full">
@@ -93,6 +140,7 @@ const ChatBox = ({
           )}
         </div>
 
+        {/* Input area stays unchanged */}
         <div className="relative p-3">
           <textarea
             name="prompt"

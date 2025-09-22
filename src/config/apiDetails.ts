@@ -31,6 +31,7 @@ const apiDetails = {
     clientSessionCancel: "/client/bookings",
     getScheduleBooking: "/client/bookings",
     Contact: "/contact-messages",
+    chat_checkout: "/ai-therapist/checkout"
   },
 };
 
