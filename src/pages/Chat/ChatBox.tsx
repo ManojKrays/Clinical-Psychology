@@ -31,8 +31,8 @@ const ChatBox = ({
       setPaymentLoading(true);
       const data = {
         clientId: userDetails?.id,
-        amount: 499.99,
-        currency: "USD",
+        amount: 500,
+        currency: "INR",
         productName: "AI Chat Package",
         quantity: 1,
       };
